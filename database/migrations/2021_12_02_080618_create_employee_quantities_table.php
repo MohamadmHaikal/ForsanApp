@@ -14,7 +14,13 @@ class CreateEmployeeQuantitiesTable extends Migration
     public function up()
     {
         Schema::create('employee_quantities', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('quantity');
+            $table->bigInteger('employee_id')->unsigned();
+            $table->foreign('employee_id')->references('id')->on('type_employments')->onDelete('cascade');
+            $table->bigInteger('quote_id')->unsigned();
+            $table->foreign('quote_id')->references('id')->on('quotes')->onDelete('cascade');
+          
             $table->timestamps();
         });
     }

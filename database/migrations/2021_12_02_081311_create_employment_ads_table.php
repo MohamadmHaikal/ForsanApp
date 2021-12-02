@@ -14,7 +14,13 @@ class CreateEmploymentAdsTable extends Migration
     public function up()
     {
         Schema::create('employment_ads', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('quantity');
+            $table->bigInteger('employee_id')->unsigned();
+            $table->foreign('employee_id')->references('id')->on('type_employments')->onDelete('cascade');
+            $table->bigInteger('ads_id')->unsigned();
+            $table->foreign('ads_id')->references('id')->on('ads')->onDelete('cascade');
+          
             $table->timestamps();
         });
     }

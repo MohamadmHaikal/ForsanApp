@@ -14,7 +14,11 @@ class CreateAdditionalActivitiesTable extends Migration
     public function up()
     {
         Schema::create('additional_activities', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->bigInteger('activitie_id')->unsigned();
+            $table->foreign('activitie_id')->references('id')->on('activities')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

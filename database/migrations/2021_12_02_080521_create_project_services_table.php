@@ -14,7 +14,12 @@ class CreateProjectServicesTable extends Migration
     public function up()
     {
         Schema::create('project_services', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->bigInteger('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->bigInteger('ads_id')->unsigned();
+            $table->foreign('ads_id')->references('id')->on('ads')->onDelete('cascade');
+          
             $table->timestamps();
         });
     }

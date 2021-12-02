@@ -14,7 +14,19 @@ class CreateQuotesTable extends Migration
     public function up()
     {
         Schema::create('quotes', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->boolean('status');
+            $table->boolean('residence');
+            $table->boolean('transportation');
+            $table->string('modal');
+            $table->string('contract');
+            $table->float('price');
+            $table->bigInteger('to_id')->unsigned();
+            $table->foreign('to_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('form_id')->unsigned();
+            $table->foreign('form_id')->references('id')->on('users')->onDelete('cascade');
+          
             $table->timestamps();
         });
     }

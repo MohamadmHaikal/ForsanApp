@@ -14,7 +14,10 @@ class CreateNeighborhoodsTable extends Migration
     public function up()
     {
         Schema::create('neighborhoods', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->bigInteger('city_id')->unsigned();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->timestamps();
         });
     }
