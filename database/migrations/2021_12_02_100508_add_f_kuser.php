@@ -13,7 +13,7 @@ class AddFKuser extends Migration
      */
     public function up()
     {
-
+        //test
         Schema::table('users', function (Blueprint $table) {
             $table->bigInteger('neighbor_id')->unsigned();
             $table->foreign('neighbor_id')->references('id')->on('neighborhoods')->onDelete('cascade');
